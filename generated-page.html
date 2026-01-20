@@ -8,6 +8,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     
     <script>
+        /**
+         * @typedef {Object} ColorPalette
+         * @property {string} 50
+         * @property {string} 100
+         * @property {string} 200
+         * @property {string} 300
+         * @property {string} 400
+         * @property {string} 500
+         * @property {string} 600
+         * @property {string} 800
+         * @property {string} 900
+         */
+
+        /**
+         * @typedef {Object} CustomColors
+         * @property {ColorPalette} wood
+         */
+
+        /**
+         * @typedef {Object} FontFamily
+         * @property {string[]} sans
+         * @property {string[]} serif
+         */
+
+        /**
+         * @typedef {Object} ThemeExtension
+         * @property {FontFamily} fontFamily
+         * @property {CustomColors} colors
+         */
+
+        /**
+         * @typedef {Object} Theme
+         * @property {ThemeExtension} extend
+         */
+
+        /**
+         * @typedef {Object} TailwindConfig
+         * @property {Theme} theme
+         */
+
+        /** @type {TailwindConfig} */
         tailwind.config = {
             theme: {
                 extend: {
@@ -376,7 +417,7 @@
                 <!-- Simple Form Mockup -->
                 <div class="bg-wood-800 p-8 rounded-2xl border border-wood-700">
                     <h3 class="font-serif text-2xl text-white mb-6">Quick Inquiry</h3>
-                    <form class="space-y-4" onsubmit="event.preventDefault();">
+                    <form class="space-y-4" onsubmit="/** @param {SubmitEvent} event */ (event) => { event.preventDefault(); }">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs text-wood-300 mb-1">Check-in</label>
