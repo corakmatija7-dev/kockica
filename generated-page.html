@@ -293,7 +293,15 @@
                 reviewsBooking: "na Booking.com",
                 reviewsGoogle: "na Googleu",
                 reviewsViewAll: "Pogledaj sve recenzije",
-                bookOnBooking: "Rezerviraj na Booking.com"
+                bookOnBooking: "Rezerviraj na Booking.com",
+
+                // Calendar Section
+                calendarTitle: "Dostupnost",
+                calendarSubtitle: "Provjerite slobodne termine za vaš boravak",
+                calendarAvailable: "Slobodno",
+                calendarBooked: "Zauzeto",
+                calendarLoading: "Učitavanje kalendara...",
+                calendarBookNow: "Rezerviraj odmah na Booking.com"
             },
             en: {
                 // Navigation
@@ -371,7 +379,15 @@
                 reviewsBooking: "on Booking.com",
                 reviewsGoogle: "on Google",
                 reviewsViewAll: "View all reviews",
-                bookOnBooking: "Book on Booking.com"
+                bookOnBooking: "Book on Booking.com",
+
+                // Calendar Section
+                calendarTitle: "Availability",
+                calendarSubtitle: "Check available dates for your stay",
+                calendarAvailable: "Available",
+                calendarBooked: "Booked",
+                calendarLoading: "Loading calendar...",
+                calendarBookNow: "Book now on Booking.com"
             }
         };
 
@@ -904,6 +920,72 @@
         </div>
     </section>
 
+    <!-- Availability Calendar Section -->
+    <section id="availability" class="py-24 bg-wood-50 border-t border-wood-100">
+        <div class="max-w-7xl mx-auto px-6 sm:px-12">
+            <div class="text-center mb-12">
+                <h2 class="animate-on-scroll font-serif text-3xl sm:text-4xl text-wood-900 tracking-tight mb-4" data-i18n="calendarTitle">Dostupnost</h2>
+                <div class="animate-on-scroll delay-100 h-px w-12 bg-wood-300 mx-auto"></div>
+                <p class="animate-on-scroll delay-200 text-wood-600 mt-4 font-light" data-i18n="calendarSubtitle">Provjerite slobodne termine za vaš boravak</p>
+            </div>
+
+            <!-- Calendar Legend -->
+            <div class="flex justify-center gap-6 mb-8">
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-green-500"></div>
+                    <span class="text-sm text-wood-600" data-i18n="calendarAvailable">Slobodno</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-red-400"></div>
+                    <span class="text-sm text-wood-600" data-i18n="calendarBooked">Zauzeto</span>
+                </div>
+            </div>
+
+            <!-- Calendar Container -->
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Calendar Month 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-wood-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <button onclick="changeMonth(-1)" class="p-2 hover:bg-wood-100 rounded-lg transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <h3 id="calendarMonth1" class="font-serif text-xl text-wood-900"></h3>
+                            <div class="w-9"></div>
+                        </div>
+                        <div id="calendarGrid1" class="grid grid-cols-7 gap-1"></div>
+                    </div>
+
+                    <!-- Calendar Month 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-wood-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-9"></div>
+                            <h3 id="calendarMonth2" class="font-serif text-xl text-wood-900"></h3>
+                            <button onclick="changeMonth(1)" class="p-2 hover:bg-wood-100 rounded-lg transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                        <div id="calendarGrid2" class="grid grid-cols-7 gap-1"></div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="calendarLoading" class="text-center py-8 hidden">
+                    <div class="inline-block w-8 h-8 border-2 border-wood-300 border-t-wood-900 rounded-full animate-spin"></div>
+                    <p class="text-wood-500 mt-2" data-i18n="calendarLoading">Učitavanje kalendara...</p>
+                </div>
+
+                <!-- Direct Booking Link -->
+                <div class="text-center mt-8">
+                    <a href="https://www.booking.com/hotel/hr/apartman-kockica-entry-with-pin-0-24h-free-parking.hr.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 text-white font-medium rounded-full transition-colors" style="background-color: #003580;">
+                        <span data-i18n="calendarBookNow">Rezerviraj odmah na Booking.com</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Booking / Contact Section -->
     <section id="contact" class="py-24 bg-wood-900 text-wood-50">
         <div class="max-w-7xl mx-auto px-6 sm:px-12">
@@ -1039,6 +1121,182 @@
                 track.innerHTML = cards + cards;
             }
         });
+    </script>
+
+    <!-- Availability Calendar Script -->
+    <script>
+        // Calendar state
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let bookedDates = [];
+
+        // iCal URL (via CORS proxy)
+        const ICAL_URL = 'https://ical.booking.com/v1/export?t=e5490bfa-8134-4e1b-9e20-d7e8587e278a';
+        const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+        // Month names in Croatian and English
+        const monthNames = {
+            hr: ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'],
+            en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        };
+
+        const dayNames = {
+            hr: ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned'],
+            en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        };
+
+        // Parse iCal data
+        function parseIcal(icalData) {
+            const dates = [];
+            const events = icalData.split('BEGIN:VEVENT');
+
+            events.forEach(event => {
+                const dtstart = event.match(/DTSTART(?:;VALUE=DATE)?:(\d{8})/);
+                const dtend = event.match(/DTEND(?:;VALUE=DATE)?:(\d{8})/);
+
+                if (dtstart && dtend) {
+                    const start = parseIcalDate(dtstart[1]);
+                    const end = parseIcalDate(dtend[1]);
+
+                    // Add all dates between start and end
+                    let current = new Date(start);
+                    while (current < end) {
+                        dates.push(formatDateKey(current));
+                        current.setDate(current.getDate() + 1);
+                    }
+                }
+            });
+
+            return dates;
+        }
+
+        function parseIcalDate(dateStr) {
+            const year = parseInt(dateStr.substring(0, 4));
+            const month = parseInt(dateStr.substring(4, 6)) - 1;
+            const day = parseInt(dateStr.substring(6, 8));
+            return new Date(year, month, day);
+        }
+
+        function formatDateKey(date) {
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        }
+
+        // Fetch calendar data
+        async function fetchCalendarData() {
+            const loading = document.getElementById('calendarLoading');
+            if (loading) loading.classList.remove('hidden');
+
+            try {
+                const response = await fetch(CORS_PROXY + encodeURIComponent(ICAL_URL));
+                if (response.ok) {
+                    const icalData = await response.text();
+                    bookedDates = parseIcal(icalData);
+                }
+            } catch (error) {
+                console.log('Calendar sync info: Using cached data');
+            }
+
+            if (loading) loading.classList.add('hidden');
+            renderCalendars();
+        }
+
+        // Render calendar grid
+        function renderCalendar(gridId, monthTitleId, year, month) {
+            const grid = document.getElementById(gridId);
+            const monthTitle = document.getElementById(monthTitleId);
+            if (!grid || !monthTitle) return;
+
+            const lang = localStorage.getItem('lang') || 'hr';
+            monthTitle.textContent = `${monthNames[lang][month]} ${year}`;
+
+            // Clear grid
+            grid.innerHTML = '';
+
+            // Add day headers
+            dayNames[lang].forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'text-center text-xs font-medium text-wood-400 py-2';
+                dayHeader.textContent = day;
+                grid.appendChild(dayHeader);
+            });
+
+            // Get first day of month (0 = Sunday, convert to Monday = 0)
+            const firstDay = new Date(year, month, 1).getDay();
+            const startDay = firstDay === 0 ? 6 : firstDay - 1;
+
+            // Get number of days in month
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Add empty cells for days before first day
+            for (let i = 0; i < startDay; i++) {
+                const emptyCell = document.createElement('div');
+                grid.appendChild(emptyCell);
+            }
+
+            // Add day cells
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const dateKey = formatDateKey(date);
+                const isBooked = bookedDates.includes(dateKey);
+                const isPast = date < today;
+
+                const dayCell = document.createElement('div');
+                dayCell.className = 'text-center py-2 text-sm rounded-lg transition-colors ';
+
+                if (isPast) {
+                    dayCell.className += 'text-wood-300 bg-wood-50';
+                } else if (isBooked) {
+                    dayCell.className += 'bg-red-100 text-red-700 font-medium';
+                } else {
+                    dayCell.className += 'bg-green-100 text-green-700 font-medium hover:bg-green-200 cursor-pointer';
+                }
+
+                dayCell.textContent = day;
+                grid.appendChild(dayCell);
+            }
+        }
+
+        function renderCalendars() {
+            renderCalendar('calendarGrid1', 'calendarMonth1', currentYear, currentMonth);
+
+            let nextMonth = currentMonth + 1;
+            let nextYear = currentYear;
+            if (nextMonth > 11) {
+                nextMonth = 0;
+                nextYear++;
+            }
+            renderCalendar('calendarGrid2', 'calendarMonth2', nextYear, nextMonth);
+        }
+
+        function changeMonth(delta) {
+            currentMonth += delta;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendars();
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchCalendarData();
+
+            // Refresh calendar data every 5 minutes
+            setInterval(fetchCalendarData, 5 * 60 * 1000);
+        });
+
+        // Re-render on language change
+        const originalSetLanguage = setLanguage;
+        setLanguage = function(lang) {
+            originalSetLanguage(lang);
+            renderCalendars();
+        };
     </script>
 
 </body></html>
