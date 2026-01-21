@@ -38,8 +38,55 @@
         .lang-btn.active { background-color: #4d3d36; color: white; }
         .booking-blue { background-color: #003580; }
         .booking-blue:hover { background-color: #00224f; }
-        .review-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .review-card { transition: transform 0.3s ease, box-shadow 0.3s ease; flex-shrink: 0; }
         .review-card:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.08); }
+
+        /* Infinite scroll carousel */
+        .reviews-carousel {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 1rem;
+            animation: scroll 60s linear infinite;
+            width: max-content;
+        }
+
+        .reviews-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Fade in animation */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
     </style>
     <script>
         const translations = {
@@ -204,11 +251,12 @@
                 </div>
             </div>
 
-            <!-- All Booking.com Reviews -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <!-- All Booking.com Reviews - Scrolling Carousel -->
+            <div class="reviews-carousel mb-8">
+                <div class="reviews-track" id="reviewsTrack">
 
                 <!-- Review 1 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -221,7 +269,7 @@
                 </div>
 
                 <!-- Review 2 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -234,7 +282,7 @@
                 </div>
 
                 <!-- Review 3 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -247,7 +295,7 @@
                 </div>
 
                 <!-- Review 4 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -260,7 +308,7 @@
                 </div>
 
                 <!-- Review 5 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -273,7 +321,7 @@
                 </div>
 
                 <!-- Review 6 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -286,7 +334,7 @@
                 </div>
 
                 <!-- Review 7 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -299,7 +347,7 @@
                 </div>
 
                 <!-- Review 8 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -312,7 +360,7 @@
                 </div>
 
                 <!-- Review 9 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -325,7 +373,7 @@
                 </div>
 
                 <!-- Review 10 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇲🇰</span>
@@ -338,7 +386,7 @@
                 </div>
 
                 <!-- Review 11 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇧🇬</span>
@@ -351,7 +399,7 @@
                 </div>
 
                 <!-- Review 12 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇵🇰</span>
@@ -364,7 +412,7 @@
                 </div>
 
                 <!-- Review 13 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇵🇹</span>
@@ -377,7 +425,7 @@
                 </div>
 
                 <!-- Review 14 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇧🇦</span>
@@ -390,7 +438,7 @@
                 </div>
 
                 <!-- Review 15 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -403,7 +451,7 @@
                 </div>
 
                 <!-- Review 16 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -416,7 +464,7 @@
                 </div>
 
                 <!-- Review 17 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇧🇬</span>
@@ -429,7 +477,7 @@
                 </div>
 
                 <!-- Review 18 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -442,7 +490,7 @@
                 </div>
 
                 <!-- Review 19 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -455,7 +503,7 @@
                 </div>
 
                 <!-- Review 20 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇫🇷</span>
@@ -468,7 +516,7 @@
                 </div>
 
                 <!-- Review 21 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇫🇷</span>
@@ -481,7 +529,7 @@
                 </div>
 
                 <!-- Review 22 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -494,7 +542,7 @@
                 </div>
 
                 <!-- Review 23 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -507,7 +555,7 @@
                 </div>
 
                 <!-- Review 24 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -520,7 +568,7 @@
                 </div>
 
                 <!-- Review 25 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇧🇬</span>
@@ -533,7 +581,7 @@
                 </div>
 
                 <!-- Review 26 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -546,7 +594,7 @@
                 </div>
 
                 <!-- Review 27 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -559,7 +607,7 @@
                 </div>
 
                 <!-- Review 28 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -572,7 +620,7 @@
                 </div>
 
                 <!-- Review 29 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -585,7 +633,7 @@
                 </div>
 
                 <!-- Review 30 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -598,7 +646,7 @@
                 </div>
 
                 <!-- Review 31 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇭🇷</span>
@@ -611,7 +659,7 @@
                 </div>
 
                 <!-- Review 32 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇷🇸</span>
@@ -624,7 +672,7 @@
                 </div>
 
                 <!-- Review 33 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇧🇬</span>
@@ -637,7 +685,7 @@
                 </div>
 
                 <!-- Review 34 -->
-                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100 w-80 min-w-[320px]">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🇩🇪</span>
@@ -649,6 +697,7 @@
                     <p class="text-wood-600 text-sm leading-relaxed italic">Exceptional</p>
                 </div>
 
+                </div>
             </div>
 
             <!-- View All on Booking.com Button -->
@@ -705,10 +754,10 @@
             <div class="flex flex-col items-center mb-8">
                 <p class="text-wood-300 text-sm mb-4" data-i18n="footerFollow">Pratite nas</p>
                 <div class="flex gap-6">
-                    <a href="https://www.instagram.com/apartman_kockica/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 hover:scale-110 transition-transform">
+                    <a href="https://www.instagram.com/apartman_kockica?igsh=MTIydm01ZThxOGJoYg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 hover:scale-110 transition-transform">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61566498498498" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center w-14 h-14 rounded-full bg-[#1877F2] hover:scale-110 transition-transform">
+                    <a href="https://www.facebook.com/share/1A22B1QiSP/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center w-14 h-14 rounded-full bg-[#1877F2] hover:scale-110 transition-transform">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
                 </div>
@@ -718,15 +767,27 @@
                 <div class="font-serif text-xl tracking-tighter text-white">APARTMAN KOCKICA</div>
                 <div class="text-xs font-light tracking-wide" data-i18n="footerRights">© 2023 Apartman Kockica. Sva prava pridržana.</div>
                 <div class="flex gap-4">
-                    <a href="https://www.instagram.com/apartman_kockica/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                    <a href="https://www.instagram.com/apartman_kockica?igsh=MTIydm01ZThxOGJoYg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61566498498498" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                    <a href="https://www.facebook.com/share/1A22B1QiSP/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Infinite Scroll Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('reviewsTrack');
+            if (track) {
+                // Clone all review cards for infinite scroll
+                const cards = track.innerHTML;
+                track.innerHTML = cards + cards;
+            }
+        });
+    </script>
 
 </body></html>
