@@ -49,7 +49,9 @@
                 bookingTitle: "Booking.com Recenzije", bookingScore: "Ocjena gostiju", bookingBased: "recenzija",
                 bookingViewAll: "Pogledaj sve recenzije na Booking.com", googleTitle: "Google Recenzije", googleViewAll: "Pogledaj sve recenzije na Googleu",
                 ctaTitle: "Spremni za nezaboravan boravak?", ctaSubtitle: "Pridružite se stotinama zadovoljnih gostiju.", ctaButton: "Rezervirajte sada",
-                footerRights: "© 2023 Apartman Kockica. Sva prava pridržana."
+                footerRights: "© 2023 Apartman Kockica. Sva prava pridržana.",
+                catStaff: "Osoblje", catFacilities: "Sadržaji", catCleanliness: "Čistoća", catComfort: "Udobnost",
+                catValue: "Vrijednost za novac", catLocation: "Lokacija", catWifi: "Besplatni WiFi"
             },
             en: {
                 navHome: "Home", navExperience: "Experience", navGallery: "Gallery", navReviews: "Reviews", navBookNow: "Book Now",
@@ -57,7 +59,9 @@
                 bookingTitle: "Booking.com Reviews", bookingScore: "Guest Rating", bookingBased: "reviews",
                 bookingViewAll: "View all reviews on Booking.com", googleTitle: "Google Reviews", googleViewAll: "View all reviews on Google",
                 ctaTitle: "Ready for an unforgettable stay?", ctaSubtitle: "Join hundreds of satisfied guests.", ctaButton: "Book Now",
-                footerRights: "© 2023 Apartman Kockica. All rights reserved."
+                footerRights: "© 2023 Apartman Kockica. All rights reserved.",
+                catStaff: "Staff", catFacilities: "Facilities", catCleanliness: "Cleanliness", catComfort: "Comfort",
+                catValue: "Value for money", catLocation: "Location", catWifi: "Free WiFi"
             }
         };
         let currentLang = localStorage.getItem('lang') || 'hr';
@@ -126,18 +130,76 @@
 
             <!-- Overall Score Card -->
             <div class="bg-white rounded-2xl p-8 shadow-sm border border-wood-100 mb-8">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="text-center">
+                <div class="flex flex-col lg:flex-row items-start gap-8">
+                    <!-- Main Score -->
+                    <div class="text-center lg:text-left">
                         <div class="inline-flex items-end gap-2 mb-2">
                             <span class="text-6xl font-bold text-wood-900">10</span>
                             <span class="text-2xl text-wood-400 mb-2">/10</span>
                         </div>
                         <p class="text-wood-600 font-medium" data-i18n="bookingScore">Ocjena gostiju</p>
                         <p class="text-wood-400 text-sm">34 <span data-i18n="bookingBased">recenzija</span></p>
+                        <p class="text-wood-600 text-lg mt-2">Izuzetan</p>
                     </div>
-                    <div class="flex-1 text-center md:text-left">
-                        <p class="text-wood-600 text-lg">Izuzetan</p>
-                        <p class="text-wood-400 text-sm">Svi gosti ocijenili s ocjenom 10/10</p>
+
+                    <!-- Category Ratings -->
+                    <div class="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Osoblje -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catStaff">Osoblje</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">10</span>
+                        </div>
+                        <!-- Sadržaji -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catFacilities">Sadržaji</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">10</span>
+                        </div>
+                        <!-- Čistoća -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catCleanliness">Čistoća</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">10</span>
+                        </div>
+                        <!-- Udobnost -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catComfort">Udobnost</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">10</span>
+                        </div>
+                        <!-- Vrijednost za novac -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catValue">Vrijednost za novac</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 99%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">9,9</span>
+                        </div>
+                        <!-- Lokacija -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catLocation">Lokacija</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 98%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">9,8</span>
+                        </div>
+                        <!-- Besplatni WiFi -->
+                        <div class="flex items-center gap-3 sm:col-span-2">
+                            <span class="text-sm text-wood-600 w-36" data-i18n="catWifi">Besplatni WiFi</span>
+                            <div class="flex-1 h-2 bg-wood-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-wood-900 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-wood-900 w-8 text-right">10</span>
+                        </div>
                     </div>
                 </div>
             </div>
