@@ -34,135 +34,45 @@
         }
     </script>
     <style>
-        .lang-btn {
-            transition: all 0.2s ease;
-        }
-        .lang-btn.active {
-            background-color: #4d3d36;
-            color: white;
-        }
-        .star-filled {
-            color: #f59e0b;
-        }
-        .booking-blue {
-            background-color: #003580;
-        }
-        .booking-blue:hover {
-            background-color: #00224f;
-        }
-        .google-review-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .google-review-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        }
+        .lang-btn { transition: all 0.2s ease; }
+        .lang-btn.active { background-color: #4d3d36; color: white; }
+        .booking-blue { background-color: #003580; }
+        .booking-blue:hover { background-color: #00224f; }
+        .review-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .review-card:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.08); }
     </style>
     <script>
         const translations = {
             hr: {
-                // Navigation
-                navHome: "Naslovnica",
-                navExperience: "Iskustvo",
-                navGallery: "Galerija",
-                navReviews: "Recenzije",
-                navBookNow: "Rezerviraj",
-
-                // Page Content
-                pageTitle: "Recenzije gostiju",
-                pageSubtitle: "Pogledajte što naši gosti kažu o svom boravku u Apartmanu Kockica.",
-
-                // Booking.com Section
-                bookingTitle: "Booking.com Recenzije",
-                bookingScore: "Ocjena gostiju",
-                bookingBased: "na temelju recenzija",
-                bookingViewAll: "Pogledaj sve recenzije na Booking.com",
-
-                // Google Section
-                googleTitle: "Google Recenzije",
-                googleViewAll: "Pogledaj sve recenzije na Googleu",
-
-                // Review Categories
-                catCleanliness: "Čistoća",
-                catComfort: "Udobnost",
-                catLocation: "Lokacija",
-                catFacilities: "Sadržaji",
-                catStaff: "Osoblje",
-                catValue: "Vrijednost",
-
-                // CTA Section
-                ctaTitle: "Spremni za nezaboravan boravak?",
-                ctaSubtitle: "Pridružite se stotinama zadovoljnih gostiju.",
-                ctaButton: "Rezervirajte sada",
-
-                // Footer
+                navHome: "Naslovnica", navExperience: "Iskustvo", navGallery: "Galerija", navReviews: "Recenzije", navBookNow: "Rezerviraj",
+                pageTitle: "Recenzije gostiju", pageSubtitle: "Pogledajte što naši gosti kažu o svom boravku u Apartmanu Kockica.",
+                bookingTitle: "Booking.com Recenzije", bookingScore: "Ocjena gostiju", bookingBased: "recenzija",
+                bookingViewAll: "Pogledaj sve recenzije na Booking.com", googleTitle: "Google Recenzije", googleViewAll: "Pogledaj sve recenzije na Googleu",
+                ctaTitle: "Spremni za nezaboravan boravak?", ctaSubtitle: "Pridružite se stotinama zadovoljnih gostiju.", ctaButton: "Rezervirajte sada",
                 footerRights: "© 2023 Apartman Kockica. Sva prava pridržana."
             },
             en: {
-                // Navigation
-                navHome: "Home",
-                navExperience: "Experience",
-                navGallery: "Gallery",
-                navReviews: "Reviews",
-                navBookNow: "Book Now",
-
-                // Page Content
-                pageTitle: "Guest Reviews",
-                pageSubtitle: "See what our guests say about their stay at Apartman Kockica.",
-
-                // Booking.com Section
-                bookingTitle: "Booking.com Reviews",
-                bookingScore: "Guest Rating",
-                bookingBased: "based on reviews",
-                bookingViewAll: "View all reviews on Booking.com",
-
-                // Google Section
-                googleTitle: "Google Reviews",
-                googleViewAll: "View all reviews on Google",
-
-                // Review Categories
-                catCleanliness: "Cleanliness",
-                catComfort: "Comfort",
-                catLocation: "Location",
-                catFacilities: "Facilities",
-                catStaff: "Staff",
-                catValue: "Value",
-
-                // CTA Section
-                ctaTitle: "Ready for an unforgettable stay?",
-                ctaSubtitle: "Join hundreds of satisfied guests.",
-                ctaButton: "Book Now",
-
-                // Footer
+                navHome: "Home", navExperience: "Experience", navGallery: "Gallery", navReviews: "Reviews", navBookNow: "Book Now",
+                pageTitle: "Guest Reviews", pageSubtitle: "See what our guests say about their stay at Apartman Kockica.",
+                bookingTitle: "Booking.com Reviews", bookingScore: "Guest Rating", bookingBased: "reviews",
+                bookingViewAll: "View all reviews on Booking.com", googleTitle: "Google Reviews", googleViewAll: "View all reviews on Google",
+                ctaTitle: "Ready for an unforgettable stay?", ctaSubtitle: "Join hundreds of satisfied guests.", ctaButton: "Book Now",
                 footerRights: "© 2023 Apartman Kockica. All rights reserved."
             }
         };
-
         let currentLang = localStorage.getItem('lang') || 'hr';
-
         function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            document.documentElement.lang = lang;
-
+            currentLang = lang; localStorage.setItem('lang', lang); document.documentElement.lang = lang;
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
             });
-
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                }
+                if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
             });
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setLanguage(currentLang);
-        });
+        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
     </script>
 </head>
 <body class="bg-wood-50 text-wood-900 antialiased font-sans selection:bg-wood-200 selection:text-wood-900">
@@ -171,36 +81,24 @@
     <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-wood-100">
         <div class="max-w-7xl mx-auto px-6 sm:px-12">
             <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <a href="generated-page.html" class="font-serif text-xl tracking-tighter text-wood-900 hover:opacity-70 transition-opacity">
-                    APARTMAN KOCKICA
-                </a>
-
-                <!-- Desktop Menu -->
+                <a href="generated-page.html" class="font-serif text-xl tracking-tighter text-wood-900 hover:opacity-70 transition-opacity">APARTMAN KOCKICA</a>
                 <div class="hidden md:flex items-center gap-8">
                     <a href="generated-page.html" class="text-sm font-medium tracking-wide text-wood-800 hover:text-wood-500 transition-colors" data-i18n="navHome">Naslovnica</a>
                     <a href="generated-page.html#about" class="text-sm font-medium tracking-wide text-wood-800 hover:text-wood-500 transition-colors" data-i18n="navExperience">Iskustvo</a>
                     <a href="generated-page.html#gallery" class="text-sm font-medium tracking-wide text-wood-800 hover:text-wood-500 transition-colors" data-i18n="navGallery">Galerija</a>
                     <a href="reviews.html" class="text-sm font-medium tracking-wide text-wood-500 transition-colors" data-i18n="navReviews">Recenzije</a>
-                    <a href="generated-page.html#contact" class="px-5 py-2.5 bg-wood-900 text-white text-xs font-medium tracking-wide uppercase rounded-full hover:bg-wood-800 transition-colors shadow-sm" data-i18n="navBookNow">
-                        Rezerviraj
-                    </a>
-                    <!-- Language Switcher -->
+                    <a href="generated-page.html#contact" class="px-5 py-2.5 bg-wood-900 text-white text-xs font-medium tracking-wide uppercase rounded-full hover:bg-wood-800 transition-colors shadow-sm" data-i18n="navBookNow">Rezerviraj</a>
                     <div class="flex items-center gap-1 ml-2 bg-wood-100 rounded-full p-1">
                         <button onclick="setLanguage('hr')" data-lang="hr" class="lang-btn px-3 py-1 text-xs font-medium rounded-full text-wood-800 hover:bg-wood-200">HR</button>
                         <button onclick="setLanguage('en')" data-lang="en" class="lang-btn px-3 py-1 text-xs font-medium rounded-full text-wood-800 hover:bg-wood-200">EN</button>
                     </div>
                 </div>
-
-                <!-- Mobile Language Switcher & Menu -->
                 <div class="md:hidden flex items-center gap-3">
                     <div class="flex items-center gap-1 bg-wood-100 rounded-full p-1">
                         <button onclick="setLanguage('hr')" data-lang="hr" class="lang-btn px-2 py-1 text-xs font-medium rounded-full text-wood-800">HR</button>
                         <button onclick="setLanguage('en')" data-lang="en" class="lang-btn px-2 py-1 text-xs font-medium rounded-full text-wood-800">EN</button>
                     </div>
-                    <button class="text-wood-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"></path></svg>
-                    </button>
+                    <button class="text-wood-900"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"></path></svg></button>
                 </div>
             </div>
         </div>
@@ -209,13 +107,9 @@
     <!-- Hero Section -->
     <header class="pt-32 pb-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 sm:px-12 text-center">
-            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-wood-900 tracking-tight mb-6" data-i18n="pageTitle">
-                Recenzije gostiju
-            </h1>
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-wood-900 tracking-tight mb-6" data-i18n="pageTitle">Recenzije gostiju</h1>
             <div class="h-px w-16 bg-wood-300 mx-auto mb-6"></div>
-            <p class="text-wood-600 text-lg font-light max-w-2xl mx-auto" data-i18n="pageSubtitle">
-                Pogledajte što naši gosti kažu o svom boravku u Apartmanu Kockica.
-            </p>
+            <p class="text-wood-600 text-lg font-light max-w-2xl mx-auto" data-i18n="pageSubtitle">Pogledajte što naši gosti kažu o svom boravku u Apartmanu Kockica.</p>
         </div>
     </header>
 
@@ -225,141 +119,474 @@
             <!-- Section Header -->
             <div class="flex items-center gap-4 mb-12">
                 <div class="w-12 h-12 booking-blue rounded-lg flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
-                        <path d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6ZM4 6V18H20V6H4ZM6 8H8V10H6V8ZM10 8H18V10H10V8ZM6 12H8V14H6V12ZM10 12H18V14H10V12Z"/>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M2 6C2 4.89543 2.89543 4 4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6ZM4 6V18H20V6H4Z"/></svg>
                 </div>
-                <div>
-                    <h2 class="font-serif text-2xl sm:text-3xl text-wood-900" data-i18n="bookingTitle">Booking.com Recenzije</h2>
-                </div>
+                <h2 class="font-serif text-2xl sm:text-3xl text-wood-900" data-i18n="bookingTitle">Booking.com Recenzije</h2>
             </div>
 
             <!-- Overall Score Card -->
             <div class="bg-white rounded-2xl p-8 shadow-sm border border-wood-100 mb-8">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Score Display -->
-                    <div class="text-center lg:text-left">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="text-center">
                         <div class="inline-flex items-end gap-2 mb-2">
-                            <span class="text-6xl font-bold text-wood-900">9.4</span>
+                            <span class="text-6xl font-bold text-wood-900">10</span>
                             <span class="text-2xl text-wood-400 mb-2">/10</span>
                         </div>
                         <p class="text-wood-600 font-medium" data-i18n="bookingScore">Ocjena gostiju</p>
-                        <p class="text-wood-400 text-sm">127 <span data-i18n="bookingBased">na temelju recenzija</span></p>
+                        <p class="text-wood-400 text-sm">34 <span data-i18n="bookingBased">recenzija</span></p>
                     </div>
-
-                    <!-- Category Scores -->
-                    <div class="lg:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div class="bg-wood-50 rounded-xl p-4">
-                            <p class="text-sm text-wood-500 mb-1" data-i18n="catCleanliness">Čistoća</p>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-wood-900 h-2 rounded-full" style="width: 98%"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-wood-900">9.8</span>
-                            </div>
-                        </div>
-                        <div class="bg-wood-50 rounded-xl p-4">
-                            <p class="text-sm text-wood-500 mb-1" data-i18n="catComfort">Udobnost</p>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-wood-900 h-2 rounded-full" style="width: 94%"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-wood-900">9.4</span>
-                            </div>
-                        </div>
-                        <div class="bg-wood-50 rounded-xl p-4">
-                            <p class="text-sm text-wood-500 mb-1" data-i18n="catLocation">Lokacija</p>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-wood-900 h-2 rounded-full" style="width: 92%"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-wood-900">9.2</span>
-                            </div>
-                        </div>
-                        <div class="bg-wood-50 rounded-xl p-4">
-                            <p class="text-sm text-wood-500 mb-1" data-i18n="catFacilities">Sadržaji</p>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-wood-900 h-2 rounded-full" style="width: 95%"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-wood-900">9.5</span>
-                            </div>
-                        </div>
-                        <div class="bg-wood-50 rounded-xl p-4">
-                            <p class="text-sm text-wood-500 mb-1" data-i18n="catStaff">Osoblje</p>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-wood-900 h-2 rounded-full" style="width: 96%"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-wood-900">9.6</span>
-                            </div>
-                        </div>
-                        <div class="bg-wood-50 rounded-xl p-4">
-                            <p class="text-sm text-wood-500 mb-1" data-i18n="catValue">Vrijednost</p>
-                            <div class="flex items-center gap-2">
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-wood-900 h-2 rounded-full" style="width: 93%"></div>
-                                </div>
-                                <span class="text-sm font-semibold text-wood-900">9.3</span>
-                            </div>
-                        </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <p class="text-wood-600 text-lg">Izuzetan</p>
+                        <p class="text-wood-400 text-sm">Svi gosti ocijenili s ocjenom 10/10</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Sample Reviews from Booking.com -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-wood-200 rounded-full flex items-center justify-center text-wood-700 font-semibold">M</div>
-                        <div>
-                            <p class="font-medium text-wood-900">Marko</p>
-                            <p class="text-xs text-wood-400">Zagreb, Hrvatska</p>
+            <!-- All Booking.com Reviews -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+
+                <!-- Review 1 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Valentina</p>
                         </div>
-                        <div class="ml-auto bg-wood-900 text-white px-2 py-1 rounded text-sm font-semibold">10</div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
                     </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Prekrasan apartman, izuzetno čist i udoban. Domaćin je bio vrlo ljubazan i dostupan. Lokacija je odlična, blizu centra. Svakako preporučujem!"</p>
-                    <p class="text-xs text-wood-400 mt-3">Studeni 2024</p>
+                    <p class="text-wood-500 text-xs mb-2">Grupa · Prosinac 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-wood-200 rounded-full flex items-center justify-center text-wood-700 font-semibold">A</div>
-                        <div>
-                            <p class="font-medium text-wood-900">Ana</p>
-                            <p class="text-xs text-wood-400">Split, Hrvatska</p>
+                <!-- Review 2 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Anita</p>
                         </div>
-                        <div class="ml-auto bg-wood-900 text-white px-2 py-1 rounded text-sm font-semibold">9.5</div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
                     </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Apartman je upravo onakav kako izgleda na slikama, čak i bolji. Sve je bilo savršeno pripremljeno za naš dolazak. Definitivno ćemo se vratiti!"</p>
-                    <p class="text-xs text-wood-400 mt-3">Listopad 2024</p>
+                    <p class="text-wood-500 text-xs mb-2">Par · Siječanj 2026</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Urednost, miris čistoće"</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-wood-200 rounded-full flex items-center justify-center text-wood-700 font-semibold">T</div>
-                        <div>
-                            <p class="font-medium text-wood-900">Thomas</p>
-                            <p class="text-xs text-wood-400">München, Germany</p>
+                <!-- Review 3 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Dm</p>
                         </div>
-                        <div class="ml-auto bg-wood-900 text-white px-2 py-1 rounded text-sm font-semibold">9.8</div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
                     </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Perfect place for a short stay. Very clean, modern and well-equipped. The host was very helpful with all our questions. Highly recommended!"</p>
-                    <p class="text-xs text-wood-400 mt-3">September 2024</p>
+                    <p class="text-wood-500 text-xs mb-2">Par · Prosinac 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Apartman je izuzetan. Prekrasno uređen, čist, udoban, sa svime opremljen i na odličnoj lokaciji. Preporučam"</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-wood-200 rounded-full flex items-center justify-center text-wood-700 font-semibold">I</div>
-                        <div>
-                            <p class="font-medium text-wood-900">Ivana</p>
-                            <p class="text-xs text-wood-400">Osijek, Hrvatska</p>
+                <!-- Review 4 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Josip</p>
                         </div>
-                        <div class="ml-auto bg-wood-900 text-white px-2 py-1 rounded text-sm font-semibold">10</div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
                     </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Odličan smještaj za poslovni put. Mirno, čisto i ima sve što vam treba. Parking je besplatan što je veliki plus. Vraćam se sigurno!"</p>
-                    <p class="text-xs text-wood-400 mt-3">Rujan 2024</p>
+                    <p class="text-wood-500 text-xs mb-2">Par · Prosinac 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Apartman super uređen. Ima sve što je potrebno. Vidi se da je vlasnica uložila dosta truda u uređenje apartmana. Komunikacija vrhunska. Apartman čak i bolje izgleda nego na slikama."</p>
                 </div>
+
+                <!-- Review 5 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Josip</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Obitelj · Prosinac 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Odličan boravak u prekrasnom apartmanu, izuzetno gostoprimstvo!"</p>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Mencik</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Grupa · Prosinac 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Stan je bio savršeno čist i uredan, sa svim potrebnim stvarima za boravak. Gospođa Žana poslala je sve detaljne upute na vrijeme što nam je pomoglo za još ugodniji boravak. Naša preporuka svakako!"</p>
+                </div>
+
+                <!-- Review 7 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Van</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Par · Studeni 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Predivno uređen apartman sa svime potrebnim za boravak. Uredno, čisto i miriše prekrasno."</p>
+                </div>
+
+                <!-- Review 8 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Haraci</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Solo putnik · Listopad 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Uređenje apartmana i detalji su bili odlični. Lokacija je također dobra u blizini centra. Definitivno najbolji smještaj u Sl. Brodu, planiram se vratiti!"</p>
+                </div>
+
+                <!-- Review 9 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Karla</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Solo putnik · Rujan 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Predivan apartman, čist i uredan, vlasnica tu šta god zatreba. Preporučam, nećete zažaliti! 🥰"</p>
+                </div>
+
+                <!-- Review 10 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇲🇰</span>
+                            <p class="font-medium text-wood-900">Marija</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">North Macedonia · Family · January 2026</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"The entire experience was wonderful. The host is very helpful and nice, communication was effortless! The apartment is a gem, attention to details and the care put into the place makes a person feel right at home. We would definitely visit again!"</p>
+                </div>
+
+                <!-- Review 11 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇧🇬</span>
+                            <p class="font-medium text-wood-900">Georgi</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Bulgaria · Family · January 2026</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Everything was perfect."</p>
+                </div>
+
+                <!-- Review 12 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇵🇰</span>
+                            <p class="font-medium text-wood-900">Imran</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Pakistan · Couple · December 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"A clean, peaceful, and well-located apartment with excellent amenities and a very hospitable host. There was nothing I didn't like. The stay was pleasant and comfortable."</p>
+                </div>
+
+                <!-- Review 13 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇵🇹</span>
+                            <p class="font-medium text-wood-900">Juliana</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Portugal · Couple · November 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"This accommodation is perfect, close to the station and the market. The apartment is beautiful, even prettier than the photos. The reception was wonderful; there were fruits, toast, coffee, cola, water, and other things. I will definitely return."</p>
+                </div>
+
+                <!-- Review 14 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇧🇦</span>
+                            <p class="font-medium text-wood-900">Emina</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Bosnia · Solo traveler · October 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"A beautiful, elegant, and perfectly clean apartment, very comfortable and thoughtfully arranged. It was easy to find and access the property! All was perfect! I really enjoyed my stay."</p>
+                </div>
+
+                <!-- Review 15 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Yordan</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Family · July 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Lovely apartment – clean, welcoming, and feels brand new. The location is convenient, and the host was very responsive and helpful with all our questions. Highly recommended!"</p>
+                </div>
+
+                <!-- Review 16 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Mili-2006</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Couple · December 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Cleanliness, Comfort, Facilities, Polite communication with the owner."</p>
+                </div>
+
+                <!-- Review 17 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇧🇬</span>
+                            <p class="font-medium text-wood-900">Tsveta</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Bulgaria · Couple · October 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"I recommend the apartment with both hands 🙌 Zhana is a wonderful host 🫶 Everything was beautiful - cleanliness, comfort, attention to details and guests."</p>
+                </div>
+
+                <!-- Review 18 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Lončarić</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Family · September 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Everything was excellent, apartment equipped with everything needed."</p>
+                </div>
+
+                <!-- Review 19 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Kassi</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Solo traveler · August 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"What impressed me most was the cleanliness of the apartment, which is personally very important to me - everything here was absolutely impeccable! The apartment is furnished with so much attention to detail that you immediately feel at home. Modern design combined with super comfortable bed and sofa made my stay truly pleasant. The hosts were extremely warm and attentive. Perfect 10/10!"</p>
+                </div>
+
+                <!-- Review 20 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇫🇷</span>
+                            <p class="font-medium text-wood-900">Sibel</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">France · Family · August 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"The apartment was very clean and smelled wonderful. We stayed overnight to rest on our way back from Turkey to France. The owner thought of every detail for our comfort, even providing cold drinks in the fridge and snacks for breakfast, including milk for the children. Even better than 5 stars!"</p>
+                </div>
+
+                <!-- Review 21 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇫🇷</span>
+                            <p class="font-medium text-wood-900">Kriz</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">France · Couple · August 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Fabulous, very relaxing, clean, welcoming. Everything was perfect!"</p>
+                </div>
+
+                <!-- Review 22 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Martic</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Family · August 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"The accommodation is excellent! It is invitingly furnished and you can tell the host's detail-oriented hospitality. I have visited some apartments in Slavonski Brod and most were good, but I have never felt a reception 'like home' before. I can really recommend this accommodation to all visitors!"</p>
+                </div>
+
+                <!-- Review 23 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Christos</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Couple · August 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed">"Super equipped and very nicely renovated and furnished. A family with two children fits perfectly. Highly recommended. 10 minutes from the E70."</p>
+                </div>
+
+                <!-- Review 24 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Matej</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Par · Siječanj 2026</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 25 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇧🇬</span>
+                            <p class="font-medium text-wood-900">Tsvetomir</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Bulgaria · Family · December 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Exceptional</p>
+                </div>
+
+                <!-- Review 26 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Vid</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Grupa · Listopad 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 27 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Antonio</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Par · Listopad 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 28 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Maja</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Solo putnik · Listopad 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 29 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Hajdarevic</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Obitelj · Rujan 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 30 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Jurica</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Grupa · Kolovoz 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 31 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇭🇷</span>
+                            <p class="font-medium text-wood-900">Andrej</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Solo putnik · Listopad 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Izuzetan</p>
+                </div>
+
+                <!-- Review 32 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇷🇸</span>
+                            <p class="font-medium text-wood-900">Milica</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Serbia · Solo traveler · November 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Exceptional</p>
+                </div>
+
+                <!-- Review 33 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇧🇬</span>
+                            <p class="font-medium text-wood-900">Veselin</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Bulgaria · Family · November 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Exceptional</p>
+                </div>
+
+                <!-- Review 34 -->
+                <div class="review-card bg-white rounded-xl p-5 shadow-sm border border-wood-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🇩🇪</span>
+                            <p class="font-medium text-wood-900">Besart</p>
+                        </div>
+                        <div class="bg-wood-900 text-white px-2 py-1 rounded text-xs font-semibold">10</div>
+                    </div>
+                    <p class="text-wood-500 text-xs mb-2">Germany · Family · July 2025</p>
+                    <p class="text-wood-600 text-sm leading-relaxed italic">Exceptional</p>
+                </div>
+
             </div>
 
             <!-- View All on Booking.com Button -->
@@ -375,7 +602,6 @@
     <!-- Google Reviews Section -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 sm:px-12">
-            <!-- Section Header -->
             <div class="flex items-center gap-4 mb-12">
                 <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-md border border-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
@@ -385,127 +611,12 @@
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                     </svg>
                 </div>
-                <div>
-                    <h2 class="font-serif text-2xl sm:text-3xl text-wood-900" data-i18n="googleTitle">Google Recenzije</h2>
-                </div>
+                <h2 class="font-serif text-2xl sm:text-3xl text-wood-900" data-i18n="googleTitle">Google Recenzije</h2>
             </div>
 
-            <!-- Google Overall Rating -->
-            <div class="bg-wood-50 rounded-2xl p-8 mb-8">
-                <div class="flex flex-col sm:flex-row items-center gap-6">
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-wood-900 mb-2">4.9</div>
-                        <div class="flex items-center gap-1 mb-2">
-                            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        </div>
-                        <p class="text-wood-500 text-sm">89 recenzija</p>
-                    </div>
-                    <div class="flex-1 w-full">
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm text-wood-600 w-4">5</span>
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-amber-400 h-2 rounded-full" style="width: 92%"></div>
-                                </div>
-                                <span class="text-sm text-wood-500 w-8">82</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm text-wood-600 w-4">4</span>
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-amber-400 h-2 rounded-full" style="width: 6%"></div>
-                                </div>
-                                <span class="text-sm text-wood-500 w-8">5</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm text-wood-600 w-4">3</span>
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-amber-400 h-2 rounded-full" style="width: 2%"></div>
-                                </div>
-                                <span class="text-sm text-wood-500 w-8">2</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm text-wood-600 w-4">2</span>
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-amber-400 h-2 rounded-full" style="width: 0%"></div>
-                                </div>
-                                <span class="text-sm text-wood-500 w-8">0</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm text-wood-600 w-4">1</span>
-                                <div class="flex-1 bg-wood-200 rounded-full h-2">
-                                    <div class="bg-amber-400 h-2 rounded-full" style="width: 0%"></div>
-                                </div>
-                                <span class="text-sm text-wood-500 w-8">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Google Reviews Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                <div class="google-review-card bg-wood-50 rounded-xl p-6 border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <img src="https://ui-avatars.com/api/?name=Petra+K&background=cbbcb0&color=4d3d36&size=40" alt="Petra K" class="w-10 h-10 rounded-full">
-                        <div>
-                            <p class="font-medium text-wood-900">Petra K.</p>
-                            <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Fantastičan apartman! Sve je bilo čisto i uredno. Komunikacija s domaćinom je bila izvrsna. Preporučujem svima!"</p>
-                    <p class="text-xs text-wood-400 mt-3">Prije 2 tjedna</p>
-                </div>
-
-                <div class="google-review-card bg-wood-50 rounded-xl p-6 border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <img src="https://ui-avatars.com/api/?name=Luka+M&background=cbbcb0&color=4d3d36&size=40" alt="Luka M" class="w-10 h-10 rounded-full">
-                        <div>
-                            <p class="font-medium text-wood-900">Luka M.</p>
-                            <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Odličan smještaj za kratki odmor. Moderna oprema, udoban krevet i savršena lokacija. Domaćin je bio vrlo susretljiv."</p>
-                    <p class="text-xs text-wood-400 mt-3">Prije mjesec dana</p>
-                </div>
-
-                <div class="google-review-card bg-wood-50 rounded-xl p-6 border border-wood-100">
-                    <div class="flex items-center gap-3 mb-4">
-                        <img src="https://ui-avatars.com/api/?name=Sarah+B&background=cbbcb0&color=4d3d36&size=40" alt="Sarah B" class="w-10 h-10 rounded-full">
-                        <div>
-                            <p class="font-medium text-wood-900">Sarah B.</p>
-                            <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-wood-600 text-sm leading-relaxed">"Beautiful apartment with everything you need. Very clean and the host was extremely helpful. Would definitely stay again!"</p>
-                    <p class="text-xs text-wood-400 mt-3">Prije mjesec dana</p>
-                </div>
-            </div>
-
-            <!-- View All on Google Button -->
-            <div class="text-center">
-                <a href="https://www.google.com/maps/place/Slunjska+ul.+11,+35000,+Slavonski+Brod/@45.1620552,18.0056577,17z/data=!3m1!4b1!4m6!3m5!1s0x475dba1b2270515d:0x42ea60811bc1b5ef!8m2!3d45.1620552!4d18.0082326!16s%2Fg%2F11l5czfjns" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-wood-200 text-wood-900 font-medium rounded-full hover:bg-wood-50 transition-colors">
+            <div class="bg-wood-50 rounded-2xl p-8 mb-8 text-center">
+                <p class="text-wood-600">Pošaljite nam Google recenzije pa ćemo ih dodati ovdje!</p>
+                <a href="https://www.google.com/maps/place/Slunjska+ul.+11,+35000,+Slavonski+Brod/@45.1620552,18.0056577,17z/data=!3m1!4b1!4m6!3m5!1s0x475dba1b2270515d:0x42ea60811bc1b5ef!8m2!3d45.1620552!4d18.0082326!16s%2Fg%2F11l5czfjns" target="_blank" class="inline-flex items-center gap-2 mt-4 text-wood-900 font-medium hover:text-wood-600">
                     <span data-i18n="googleViewAll">Pogledaj sve recenzije na Googleu</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
@@ -516,12 +627,8 @@
     <!-- CTA Section -->
     <section class="py-20 bg-wood-900">
         <div class="max-w-4xl mx-auto px-6 sm:px-12 text-center">
-            <h2 class="font-serif text-3xl sm:text-4xl text-white mb-4" data-i18n="ctaTitle">
-                Spremni za nezaboravan boravak?
-            </h2>
-            <p class="text-wood-300 text-lg mb-8" data-i18n="ctaSubtitle">
-                Pridružite se stotinama zadovoljnih gostiju.
-            </p>
+            <h2 class="font-serif text-3xl sm:text-4xl text-white mb-4" data-i18n="ctaTitle">Spremni za nezaboravan boravak?</h2>
+            <p class="text-wood-300 text-lg mb-8" data-i18n="ctaSubtitle">Pridružite se stotinama zadovoljnih gostiju.</p>
             <a href="generated-page.html#contact" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-wood-900 font-medium rounded-full hover:bg-wood-100 transition-colors">
                 <span data-i18n="ctaButton">Rezervirajte sada</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
@@ -533,16 +640,10 @@
     <footer class="bg-wood-900 text-wood-400 py-12 border-t border-wood-800">
         <div class="max-w-7xl mx-auto px-6 sm:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="font-serif text-xl tracking-tighter text-white">APARTMAN KOCKICA</div>
-            <div class="text-xs font-light tracking-wide" data-i18n="footerRights">
-                © 2023 Apartman Kockica. Sva prava pridržana.
-            </div>
+            <div class="text-xs font-light tracking-wide" data-i18n="footerRights">© 2023 Apartman Kockica. Sva prava pridržana.</div>
             <div class="flex gap-4">
-                <a href="#" class="hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zm1.5-4.87h.01"></path></svg>
-                </a>
-                <a href="#" class="hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                </a>
+                <a href="#" class="hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zm1.5-4.87h.01"></path></svg></a>
+                <a href="#" class="hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
             </div>
         </div>
     </footer>
