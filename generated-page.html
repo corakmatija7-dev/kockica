@@ -1,6 +1,9 @@
 <html lang="hr" class="scroll-smooth"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Apartman Kockica | Luksuzni smještaj</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
@@ -459,13 +462,48 @@
                         <button onclick="setLanguage('hr')" data-lang="hr" class="lang-btn px-2 py-1 text-xs font-medium rounded-full text-wood-800">HR</button>
                         <button onclick="setLanguage('en')" data-lang="en" class="lang-btn px-2 py-1 text-xs font-medium rounded-full text-wood-800">EN</button>
                     </div>
-                    <button class="text-wood-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24" data-icon="lucide:menu" data-width="24" data-height="24" class="iconify iconify--lucide"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16M4 12h16M4 19h16"></path></svg>
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="text-wood-900 p-2">
+                        <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h16"></path></svg>
+                        <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M18 6L6 18M6 6l12 12"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-b border-wood-100 shadow-lg">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#about" onclick="closeMobileMenu()" class="block text-base font-medium text-wood-800 hover:text-wood-500 transition-colors py-2" data-i18n="navExperience">Iskustvo</a>
+                <a href="#amenities" onclick="closeMobileMenu()" class="block text-base font-medium text-wood-800 hover:text-wood-500 transition-colors py-2">Sadržaji</a>
+                <a href="#gallery" onclick="closeMobileMenu()" class="block text-base font-medium text-wood-800 hover:text-wood-500 transition-colors py-2" data-i18n="navGallery">Galerija</a>
+                <a href="#location" onclick="closeMobileMenu()" class="block text-base font-medium text-wood-800 hover:text-wood-500 transition-colors py-2" data-i18n="navLocation">Lokacija</a>
+                <a href="reviews.html" onclick="closeMobileMenu()" class="block text-base font-medium text-wood-800 hover:text-wood-500 transition-colors py-2" data-i18n="navReviews">Recenzije</a>
+                <a href="#contact" onclick="closeMobileMenu()" class="block w-full text-center px-5 py-3 bg-wood-900 text-white text-sm font-medium uppercase rounded-full hover:bg-wood-800 transition-colors" data-i18n="navBookNow">Rezerviraj</a>
+            </div>
+        </div>
     </nav>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const iconOpen = document.getElementById('menuIconOpen');
+            const iconClose = document.getElementById('menuIconClose');
+
+            menu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const iconOpen = document.getElementById('menuIconOpen');
+            const iconClose = document.getElementById('menuIconClose');
+
+            menu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+        }
+    </script>
 
     <!-- Hero Section -->
     <header class="relative w-full h-[95vh] flex flex-col justify-end pb-24 overflow-hidden">
@@ -543,7 +581,7 @@
                 <div class="order-1 lg:order-2 grid grid-cols-2 gap-4">
                     <!-- Updated with cohesive interior shots -->
                     <img src="images/bedroom.jpg" alt="Comfortable Bedroom" class="animate-slide-right gallery-image w-full h-80 object-cover rounded-lg shadow-sm">
-                    <img src="images/entrance.jpg" alt="Living Room Detail" class="animate-slide-right delay-200 gallery-image w-full h-80 object-cover rounded-lg translate-y-8 shadow-sm">
+                    <img src="images/living-room.jpg" alt="Udoban dnevni boravak" class="animate-slide-right delay-200 gallery-image w-full h-80 object-cover rounded-lg translate-y-8 shadow-sm">
                 </div>
             </div>
         </div>
